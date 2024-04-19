@@ -1,0 +1,45 @@
+Smart Contract (Solidity)*
+```
+solidity
+pragma solidity ^0.8.0;
+
+contract Game {
+    address[] public players;
+    uint public playerCount;
+
+    constructor() {
+        playerCount = 0;
+    }
+
+    function joinGame() public {
+        players.push(msg.sender);
+        playerCount++;
+    }
+
+    function getPlayers() public view returns (address[] memory) {
+        return players;
+    }
+}
+```
+*Python Script (using Web3.py)*
+```
+from web3 import Web3
+
+# Set up web3 connection
+w3 = Web3(Web3.HTTPProvider('(link unavailable)'))
+
+# Set the smart contract address and ABI
+contract_address = '0x...YOUR_CONTRACT_ADDRESS...'
+contract_abi = [...YOUR_CONTRACT_ABI...]
+
+# Set up the contract instance
+contract = w3.eth.contract(address=contract_address, abi=contract_abi)
+
+# Call the joinGame function
+tx_hash = contract.functions.joinGame().transact({'from': 'YOUR_WALLET_ADDRESS'})
+
+# Get the players list
+players = contract.functions.getPlayers().call()
+
+print(players)
+``
